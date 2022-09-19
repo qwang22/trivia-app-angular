@@ -1,0 +1,50 @@
+app-trivia-card {
+    cursor: pointer;
+    /* padding: 10px 20px 20px 10px; */
+}
+
+app-trivia-card:hover {
+    border: 3px solid #FEDB2C;
+}
+
+app-trivia-card.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    background: #ccc;
+}
+
+div.answer-correct {
+    border: 2px solid green;
+}
+
+div.answer-incorrect {
+    border: 2px solid red;
+}
+
+div.disabled {
+    pointer-events: none;
+}
+
+.padded {
+    padding: 10px 10px 10px 10px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: center;
+    height: 80px;
+}
+
+.game-card {
+    display: flex;
+    justify-content: center;
+}
+
+.answerChoice {
+    cursor: pointer;
+    margin: 10px 10px 10px 10px;
+}
+
+.answerChoice:hover {
+    border: 2px solid goldenrod;
+}

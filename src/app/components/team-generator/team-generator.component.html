@@ -1,0 +1,104 @@
+<div class="container">
+    <h3 style='display: inline-block;'>Team Generator</h3>
+    <div class='flex-container'>
+        <div class="customTable">
+            <table class="table table-striped table-bordered customTable">
+                <thead>
+                    <tr>
+                        <th>Players
+                            <a (click)="onEditClosePlayers()" class="text-info float-right">
+                                    <i>edit</i>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+            
+                <tbody *ngIf="!isEditModePlayer">
+                    <tr *ngFor="let field of playersList; let i = index">
+                        <td *ngIf="field?.name">
+                            <i (click)="removePlayer(i)" class="mdi mdi-close mdi-18px"></i> {{field.name}}
+                        </td>
+                    </tr>
+                </tbody>
+            
+                <tbody *ngIf="isEditModePlayer">
+                    <tr *ngFor="let field of playersList; let i = index">
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div (click)="removePlayer(i)" class="input-group-text">
+                                        <i>x</i>
+                                    </div>
+                                </div>
+                                <input [(ngModel)]="field.name" class="form-control" type="text" name="{{field.name}}" placeholder="Name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <button class="btn btn-outline-info btn-lg1" type="button" (click)="addPlayer()" style="margin-right:10px">Add Player</button>
+                            <button (click)="onEditClosePlayers()" class="btn btn-primary btn-lg1" type="button">Save</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+            
+        <div>
+            <table class="table table-striped table-bordered customTable">
+                <thead>
+                    <tr>
+                        <th>Teams
+                            <a (click)="onEditCloseTeams()" class="text-info float-right">
+                                <i>edit</i>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+            
+                <tbody *ngIf="!isEditModeTeam">
+                    <tr *ngFor="let field of teamsList; let i = index">
+                        <td *ngIf="field?.name">
+                            <i (click)="removeTeam(i)" class="mdi mdi-close mdi-18px"></i> {{field.name}}
+                        </td>
+                    </tr>
+                </tbody>
+                
+                <tbody *ngIf="isEditModeTeam">
+                    <tr *ngFor="let field of teamsList; let i = index">
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div (click)="removeTeam(i)" class="input-group-text">
+                                        <i>x</i>
+                                    </div>
+                                </div>
+                                <input [(ngModel)]="field.name" class="form-control" type="text" name="{{field.name}}" placeholder="Name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <!-----need to add logic to generate > 2 teams -->
+                            <!-- <button class="btn btn-secondary btn-lg1" type="button" (click)="addTeam()" style="margin-right:10px">Add Team</button> -->
+                            <button (click)="onEditCloseTeams()" class="btn btn-primary btn-lg1" type="button">Save</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+    <button class='btn btn-primary' (click)="generateTeams()" style='margin: 10px 10px 10px 10px;'>Generate Teams</button>
+
+    <div *ngIf="areTeamsGenerated" class="flex-container">
+        <table *ngFor="let team of teams" class='table table-striped table-bordered' style='margin: 0px 20px 20px 0px;'>
+            <thead><tr><th>{{team.name}}</th></tr></thead>
+            <tbody>
+                <tr *ngFor="let player of team.members">
+                    <td>{{player.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

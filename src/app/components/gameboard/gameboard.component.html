@@ -1,0 +1,45 @@
+<div class='container' style='border: 2px solid black;'>
+
+    <div style='display: flex;'>
+        <div *ngFor="let category of categories; let i=index" class='col padded'>
+            <div class='row padded category-header'><p><strong>{{category.category}}</strong></p></div>
+            <div *ngFor="let question of category.questions.easy; let j=index" class='row padded game-card'>
+                <app-trivia-card 
+                    [questionJSON]="question" [ngClass]="{'disabled' : question.answered}"
+                    (cardSelected)="cardSelected($event, i, j, 'easy');"></app-trivia-card>
+            </div>
+            <div *ngFor="let question of category.questions.medium; let j=index" class='row padded game-card'>
+                <app-trivia-card [questionJSON]="question" [ngClass]="{'disabled' : question.answered}"
+                (cardSelected)="cardSelected($event, i, j, 'medium');" ></app-trivia-card>
+            </div>
+            <div *ngFor="let question of category.questions.hard; let j=index" class='row padded game-card'>
+                <app-trivia-card [questionJSON]="question" [ngClass]="{'disabled' : question.answered}"
+                (cardSelected)="cardSelected($event, i, j, 'hard');"></app-trivia-card>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="questionModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{questionText}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>                
+            </div>
+            <div class="modal-body" style='display: flex; flex-direction: column;'>
+                <div *ngFor="let ans of answerChoices" class="card answerChoice" (click)="evaluateAnswer(ans.isCorrect);"
+                    [ngClass]="{'disabled' : answerSelected, 'answer-correct': answerSelected && ans.isCorrect, 'answer-incorrect': answerSelected && !ans.isCorrect}"
+                >
+                    <div class="card-body game-card">
+                        <p>{{ans.text}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary clickable" (click)="replaceQuestion();">Get new question</button>
+            </div>
+        </div>
+    </div>
+</div>

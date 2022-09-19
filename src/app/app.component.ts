@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trivia-app-angular';
+  showTeamsPanel: boolean = false;
+
+
+  toggleTeamPanel() {
+    this.showTeamsPanel = !this.showTeamsPanel;
+  }
 }

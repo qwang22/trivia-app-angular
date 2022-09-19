@@ -1,0 +1,21 @@
+i {
+    cursor: pointer;
+}
+
+div.flex-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 20px 20px 20px;
+}
+
+.customTable {
+    width: 300px;
+}
+
+.container {
+    text-align: center;
+}
+
+table {
+    background-color: white;
+}
